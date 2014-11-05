@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TorrentSearcher</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint">请输入关键字</string>
+    <string name="title">种子搜索神器</string>
+    <string name="about">This is our App,please see http://bbs.hustascii.com. for more details</string>
+    <string name="aboutus">About us</string>
+    <string name="detail">详细信息</string>
+</resources>
