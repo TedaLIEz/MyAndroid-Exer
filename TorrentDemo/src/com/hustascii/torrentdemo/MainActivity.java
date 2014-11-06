@@ -1,3 +1,8 @@
+/*
+ * @aLIEzTED,ZHIYUAN MA,SICONG SHAO in ASCII
+ * This is a simple TorrentSearcher using Spider with JSoup to search and download torrent
+ * Have Fun in 11.11!
+ */
 package com.hustascii.torrentdemo;
 
 import com.hustascii.torrentdemo.activitys.ResultActivity;
@@ -38,7 +43,8 @@ public class MainActivity extends ActionBarActivity {
 				// TODO Auto-generated method stub
 				InputMethodManager imm = (InputMethodManager)getSystemService(
 					      Context.INPUT_METHOD_SERVICE);
-					imm.hideSoftInputFromWindow(ev.getWindowToken(), 0);
+					imm.hideSoftInputFromWindow(ev.getWindowToken(), 0);       //HideSoftInput
+				
 				String key = ev.getText().toString();
 				Intent intent = new Intent(MainActivity.this,
 						ResultActivity.class);

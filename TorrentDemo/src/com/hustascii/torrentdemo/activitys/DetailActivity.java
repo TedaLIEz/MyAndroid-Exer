@@ -1,3 +1,6 @@
+/*
+ * Print the FileName in the torrent which user has chosen
+ */
 package com.hustascii.torrentdemo.activitys;
 
 import java.util.ArrayList;
@@ -8,8 +11,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.hustascii.torrentdemo.R;
-import com.hustascii.torrentdemo.activitys.ResultActivity.ViewHolder;
-import com.hustascii.torrentdemo.beans.Result;
 import com.hustascii.torrentdemo.tools.DownloadFile;
 import com.hustascii.torrentdemo.tools.Spider;
 
@@ -21,22 +22,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
-import org.jsoup.select.Elements;
 
 public class DetailActivity extends Activity {
 	private ListView lv;
@@ -77,7 +74,7 @@ public class DetailActivity extends Activity {
 			map = new HashMap<String, Map<String, List<Element>>>();
 			try {
 				map = sd.map(url);                       //getMap
-				Map map_tmp = map.get(url);
+				Map<String, List<Element>> map_tmp = map.get(url);
 				Set<String> mapSet = map_tmp.keySet();
 				Iterator<String> i = mapSet.iterator();
 				download_url = i.next();
@@ -85,19 +82,23 @@ public class DetailActivity extends Activity {
 				filename = map.get(url).get(download_url); 
 				
 				na = new NameAdapter(DetailActivity.this);
+				return true;
 			} catch (Exception e) {
-				// TODO 异常处理(网络问题)
-				Log.i("tag", "数据获取失败");
-				e.printStackTrace();
+				// TODO HttpException
+				return false;
 			}
 
-			return null;
+			
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
+			if(result){
 			pd.dismiss();
 			lv.setAdapter(na);
+			}else{
+				Toast.makeText(DetailActivity.this, "Wops!貌似网络不给力", Toast.LENGTH_SHORT).show();
+			}
 		}
 
 	}
@@ -125,7 +126,7 @@ public class DetailActivity extends Activity {
 					public void run() {
 						// TODO Auto-generated method stub
 						df=new DownloadFile();
-						final Boolean res=df.downloadFile(download_url);
+						final Boolean res=df.downloadFile(download_url);                  //Download torrent in thread
 						handler.post(new Runnable() {
 
 							@Override

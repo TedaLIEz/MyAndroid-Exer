@@ -1,6 +1,8 @@
+/*
+ * Make the AboutBox
+ */
 package com.hustascii.torrentdemo.tools;
 
-import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;

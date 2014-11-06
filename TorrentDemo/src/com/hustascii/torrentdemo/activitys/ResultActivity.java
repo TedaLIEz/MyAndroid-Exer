@@ -1,10 +1,12 @@
+/*
+ * To list the torrent with the keyword which user put
+ */
 package com.hustascii.torrentdemo.activitys;
 
 import java.util.ArrayList;
 
 import com.hustascii.torrentdemo.R;
 import com.hustascii.torrentdemo.beans.Result;
-
 import com.hustascii.torrentdemo.tools.Spider;
 
 import android.app.Activity;
@@ -47,18 +49,14 @@ public class ResultActivity extends Activity {
 			resultal = new ArrayList<Result>();
 			try {
 				resultal = sd.collect(key[0]);
-				if (resultal.isEmpty()) {
-					return false;
-				} else {
-					return true;
-				}
-			} catch (Exception e) {
-				// TODO 异常处理(网络问题)
 
-				e.printStackTrace();
+				return true;
+			} catch (Exception e) {
+				// TODO TimeoutException
+				return false;
+
 			}
 
-			return null;
 		}
 
 		@Override
@@ -67,22 +65,40 @@ public class ResultActivity extends Activity {
 
 			Myadapter name_adapter = new Myadapter(ResultActivity.this);
 			if (result) {
-				resultlv.setAdapter(name_adapter);
-				resultlv.setOnItemClickListener(new OnItemClickListener() {
+				if (resultal.isEmpty()) {
+					new AlertDialog.Builder(ResultActivity.this)
+							.setMessage("貌似没有答案")
+							.setPositiveButton("返回", new OnClickListener() {
 
-					@Override
-					public void onItemClick(AdapterView<?> arg0, View arg1,
-							int pos, long arg3) {
-						Intent url = new Intent(ResultActivity.this,
-								DetailActivity.class);
-						url.putExtra("url", resultal.get(pos).getUrl());
-						startActivity(url);
-					}
-				});
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// TODO Auto-generated method stub
+									Intent back = new Intent(
+											ResultActivity.this,
+											com.hustascii.torrentdemo.MainActivity.class);
+									startActivity(back);
+								}
+							}).show();
+				} else {
+					resultlv.setAdapter(name_adapter);
+					resultlv.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0, View arg1,
+								int pos, long arg3) {
+							Intent url = new Intent(ResultActivity.this,
+									DetailActivity.class);
+							url.putExtra("url", resultal.get(pos).getUrl());
+							startActivity(url);
+						}
+					});
+				}
+
 			} else {
 				new AlertDialog.Builder(ResultActivity.this)
-						.setMessage("貌似没有答案")
-						.setPositiveButton("确定", new OnClickListener() {
+						.setMessage("Wops!貌似网络不给力")
+						.setPositiveButton("返回", new OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog,
