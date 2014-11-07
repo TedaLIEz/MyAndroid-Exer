@@ -15,6 +15,8 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
+        public static final int anim_set_pic=0x7f040006;
+        public static final int anim_set_str=0x7f040007;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1114,7 +1116,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050048;
+        public static final int action_settings=0x7f05004a;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1166,12 +1168,14 @@ containing a value of this type.
         public static final int showTitle=0x7f050006;
         public static final int sizelist=0x7f050046;
         public static final int split_action_bar=0x7f05001e;
+        public static final int start=0x7f050049;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
+        public static final int welcome=0x7f050048;
         public static final int withText=0x7f05000c;
     }
     public static final class integer {
@@ -1231,6 +1235,7 @@ containing a value of this type.
         public static final int listitem=0x7f03001c;
         public static final int resultactivity=0x7f03001d;
         public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int welcome=0x7f03001f;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;

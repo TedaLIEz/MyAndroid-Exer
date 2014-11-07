@@ -4,6 +4,8 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
+int anim anim_set_pic 0x7f040006
+int anim anim_set_str 0x7f040007
 int attr actionBarDivider 0x7f01000f
 int attr actionBarItemBackground 0x7f010010
 int attr actionBarSize 0x7f01000e
@@ -269,7 +271,7 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f050048
+int id action_settings 0x7f05004a
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id beginning 0x7f050011
@@ -321,12 +323,14 @@ int id showHome 0x7f050004
 int id showTitle 0x7f050006
 int id sizelist 0x7f050046
 int id split_action_bar 0x7f05001e
+int id start 0x7f050049
 int id submit_area 0x7f050039
 int id tabMode 0x7f050002
 int id title 0x7f05002b
 int id top_action_bar 0x7f050020
 int id up 0x7f050021
 int id useLogo 0x7f050003
+int id welcome 0x7f050048
 int id withText 0x7f05000c
 int integer abc_max_action_buttons 0x7f090000
 int layout abc_action_bar_decor 0x7f030000
@@ -360,6 +364,7 @@ int layout filelist 0x7f03001b
 int layout listitem 0x7f03001c
 int layout resultactivity 0x7f03001d
 int layout support_simple_spinner_dropdown_item 0x7f03001e
+int layout welcome 0x7f03001f
 int menu main 0x7f0c0000
 int string abc_action_bar_home_description 0x7f0a0001
 int string abc_action_bar_up_description 0x7f0a0002
