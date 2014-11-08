@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
-<item android:drawable="@drawable/bt_download_pressed" android:state_pressed="true"></item>    
-<item android:drawable="@drawable/bt_download_focused" android:state_focused="true"></item>
-<item android:drawable="@drawable/bt_download_default"></item>
+<item android:drawable="@drawable/icon_28665" android:state_pressed="true"></item>    
+<item android:drawable="@drawable/downloads_green" android:state_hovered="true"></item>
+<item android:drawable="@drawable/downloads_blue"></item>
 </selector>

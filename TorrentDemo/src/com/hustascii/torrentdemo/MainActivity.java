@@ -20,11 +20,11 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 	private EditText ev;
-	private ImageButton btn;
+	private Button btn;
 	private Button btnAbout;
 
 	@Override
@@ -34,29 +34,33 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 
 		ev = (EditText) findViewById(R.id.search);
-		btn = (ImageButton) findViewById(R.id.btn);
+		btn = (Button) findViewById(R.id.btn_search);
 		btnAbout = (Button) findViewById(R.id.btnAbout);
 		btn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				InputMethodManager imm = (InputMethodManager)getSystemService(
-					      Context.INPUT_METHOD_SERVICE);
-					imm.hideSoftInputFromWindow(ev.getWindowToken(), 0);       //HideSoftInput
-				
-				String key = ev.getText().toString();
-				Intent intent = new Intent(MainActivity.this,
-						ResultActivity.class);
-				intent.putExtra("key", key);
-				startActivity(intent);
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(ev.getWindowToken(), 0); // HideSoftInput
+				if (ev.getText().toString().isEmpty()) {
+					Toast.makeText(MainActivity.this, "«Î ‰»Îπÿº¸◊÷",
+							Toast.LENGTH_SHORT).show();
+				} else {
+
+					String key = ev.getText().toString();
+					Intent intent = new Intent(MainActivity.this,
+							ResultActivity.class);
+					intent.putExtra("key", key);
+					startActivity(intent);
+				}
 			}
 		});
+
 		btnAbout.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
+			public void onClick(View v) { // TODO Auto-generated method
 				AboutBox.Show(MainActivity.this);
 			}
 		});

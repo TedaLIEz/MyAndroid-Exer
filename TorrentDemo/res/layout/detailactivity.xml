@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/background" >
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_width="255dp"
+        android:layout_height="60dp"
         android:text="@string/detail"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:gravity="center" />
-
+        android:textSize="32sp"
+        android:gravity="center_vertical" />
+    <ImageView 
+        android:id="@+id/blackline"
+        android:layout_height="4dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/lines"
+        android:layout_below="@+id/title"/>
     <ListView
         android:id="@+id/detaillist"
         android:layout_width="match_parent"
-        android:layout_height="362dp"
+        android:layout_height="match_parent"
         android:divider="#000000"
+        android:layout_below="@+id/title"
         android:dividerHeight="3dp" >
-
     </ListView>
-
-
 
     <ImageButton
         android:id="@+id/download"
         android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/icon_28665"
-        android:background="@drawable/for_bt_download"  />
-</LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/title"
+        android:src="@drawable/for_bt_download"
+        android:background="#00000000"  />
+</RelativeLayout>
