@@ -1,26 +1,29 @@
 /*
- * @aLIEzTED,ZHIYUAN MA,SICONG SHAO in ASCII
+ * @aLIEzTED,ZHIYUAN MA,SICONG SHAO in HUSTASCII
  * This is a simple TorrentSearcher using Spider with JSoup to search and download torrent
  * Have Fun in 11.11!
  */
 package com.hustascii.torrentdemo;
 
-import com.hustascii.torrentdemo.activitys.ResultActivity;
-import com.hustascii.torrentdemo.tools.AboutBox;
-
-import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.hustascii.torrentdemo.activitys.ResultActivity;
+import com.hustascii.torrentdemo.tools.AboutBox;
 
 public class MainActivity extends ActionBarActivity {
 	private EditText ev;
@@ -36,6 +39,36 @@ public class MainActivity extends ActionBarActivity {
 		ev = (EditText) findViewById(R.id.search);
 		btn = (Button) findViewById(R.id.btn_search);
 		btnAbout = (Button) findViewById(R.id.btnAbout);
+		ev.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+
+		/*
+		 * Change the user's 'enter' input to search
+		 */
+		ev.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+			@Override
+			public boolean onEditorAction(TextView v, int actionId,
+					KeyEvent event) {
+				// TODO Auto-generated method stub
+				if (actionId == EditorInfo.IME_ACTION_SEARCH
+						|| (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+					if (ev.getText().toString().isEmpty()) {
+						Toast.makeText(MainActivity.this, "«Î ‰»Îπÿº¸◊÷",
+								Toast.LENGTH_SHORT).show();
+					} else {
+
+						String key = ev.getText().toString();
+						Intent intent = new Intent(MainActivity.this,
+								ResultActivity.class);
+						intent.putExtra("key", key);
+						startActivity(intent);
+					}
+					return true;
+				}
+				return false;
+			}
+		});
+
 		btn.setOnClickListener(new OnClickListener() {
 
 			@Override
