@@ -27,7 +27,7 @@ public class AboutBox {
 
 	}
 	public static void Show(Activity callingActivity){
-		SpannableString aboutText = new SpannableString("Version"+VersionName(callingActivity)+"\n\n"+callingActivity.getString(com.hustascii.torrentdemo.R.string.about));
+		SpannableString aboutText = new SpannableString("Version "+VersionName(callingActivity)+"\n\n"+callingActivity.getString(com.hustascii.torrentdemo.R.string.about));
 		View about;
 		TextView tvAbout;
 		try {

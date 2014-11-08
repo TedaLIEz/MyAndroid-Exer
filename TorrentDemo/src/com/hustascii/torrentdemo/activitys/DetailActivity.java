@@ -59,7 +59,7 @@ public class DetailActivity extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pd = new ProgressDialog(DetailActivity.this);
-			pd.setMessage("获取数据中...");
+			pd.setMessage("听说用力摇手机可以提高加载速度哦~");
 			pd.show();
 		}
 

@@ -1107,6 +1107,7 @@ containing a value of this type.
         public static final int relax=0x7f020070;
         public static final int show=0x7f020071;
         public static final int start_64=0x7f020072;
+        public static final int text=0x7f020073;
     }
     public static final class id {
         public static final int aboutLayout=0x7f05003d;
@@ -1128,7 +1129,7 @@ containing a value of this type.
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
         public static final int blackline=0x7f050042;
-        public static final int btnAbout=0x7f050041;
+        public static final int btnAbout=0x7f05003f;
         public static final int btn_search=0x7f050040;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
@@ -1159,7 +1160,7 @@ containing a value of this type.
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
         public static final int resultlist=0x7f050048;
-        public static final int search=0x7f05003f;
+        public static final int search=0x7f050041;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
         public static final int search_button=0x7f050033;
