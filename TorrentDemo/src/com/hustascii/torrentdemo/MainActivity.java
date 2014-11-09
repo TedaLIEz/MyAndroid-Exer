@@ -125,7 +125,7 @@ public class MainActivity extends ActionBarActivity {
 			mHandler.sendEmptyMessageDelayed(0,2000);		
 		}else{
 			Intent intent = new Intent(Intent.ACTION_MAIN);
-			intent.addCategory(intent.CATEGORY_HOME);
+			intent.addCategory(Intent.CATEGORY_HOME);
 			startActivity(intent);
 			System.exit(0);
 		}

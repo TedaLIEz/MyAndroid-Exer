@@ -23,10 +23,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -103,10 +100,11 @@ public class DetailActivity extends Activity {
 			if (result) {
 				pd.dismiss();
 				lv.setAdapter(na);
-				Log.i("tag", "填充完毕");
 			} else {
-				Toast.makeText(DetailActivity.this, "Wops!貌似网络不给力",
-						Toast.LENGTH_SHORT).show();
+				pd.dismiss();
+				new AlertDialog.Builder(DetailActivity.this)
+						.setMessage("Wops!貌似网络不给力")
+						.setPositiveButton("返回", null).show();
 			}
 		}
 
