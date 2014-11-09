@@ -4,11 +4,9 @@
     android:layout_width="match_parent"
     android:weightSum="10"
     android:orientation="vertical"
-    android:background="@drawable/cupsplus" xmlns:app="http://schemas.android.com/tools">
+    android:background="@drawable/cups" xmlns:app="http://schemas.android.com/tools">
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5.1"
@@ -18,25 +16,27 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         app:context="com.torrentproject.seewhat.MainActivity" >
 
-        <Button
+        <ImageButton
             android:id="@+id/btnAbout"
             android:layout_width="140dp"
             android:layout_height="100dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="105dp"
+            android:src="@drawable/for_bt_aboutus"
             android:background="#00000000" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_search"
             android:layout_width="88dp"
             android:layout_height="140dp"
             android:layout_alignBottom="@+id/btnAbout"
             android:layout_alignParentLeft="true"
-            android:background="#00000000" />
+            android:src="@drawable/for_bt_search" 
+            android:background="#00000000"/>
     </RelativeLayout>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout 
     android:layout_height="match_parent"
     android:layout_width="match_parent">
     <EditText
@@ -46,6 +46,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:ems="10"
+        android:imeOptions="actionSearch"
         android:gravity="bottom"
         android:hint="@string/hint"
         android:textStyle="italic" >

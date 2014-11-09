@@ -10,30 +10,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.hustascii.torrentdemo.R;
-import com.hustascii.torrentdemo.tools.DownloadFile;
-import com.hustascii.torrentdemo.tools.Spider;
+import org.jsoup.nodes.Element;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
+import android.webkit.MimeTypeMap;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jsoup.nodes.*;
+import com.hustascii.torrentdemo.R;
+import com.hustascii.torrentdemo.tools.DownloadFile;
+import com.hustascii.torrentdemo.tools.Spider;
 
 public class DetailActivity extends Activity {
 	private ListView lv;
@@ -47,10 +54,11 @@ public class DetailActivity extends Activity {
 	private NameAdapter na;
 	private static Handler handler = new Handler();
 	public DownloadFile df;
+
 	/*
 	 * DownLoad Torrent
 	 */
-	
+
 	/*
 	 * AsyncTask in getting torrents
 	 */
@@ -73,14 +81,14 @@ public class DetailActivity extends Activity {
 
 			map = new HashMap<String, Map<String, List<Element>>>();
 			try {
-				map = sd.map(url);                       //getMap
+				map = sd.map(url); // getMap
 				Map<String, List<Element>> map_tmp = map.get(url);
 				Set<String> mapSet = map_tmp.keySet();
 				Iterator<String> i = mapSet.iterator();
 				download_url = i.next();
-				
-				filename = map.get(url).get(download_url); 
-				
+
+				filename = map.get(url).get(download_url);
+
 				na = new NameAdapter(DetailActivity.this);
 				return true;
 			} catch (Exception e) {
@@ -88,16 +96,17 @@ public class DetailActivity extends Activity {
 				return false;
 			}
 
-			
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			if(result){
-			pd.dismiss();
-			lv.setAdapter(na);
-			}else{
-				Toast.makeText(DetailActivity.this, "Wops!貌似网络不给力", Toast.LENGTH_SHORT).show();
+			if (result) {
+				pd.dismiss();
+				lv.setAdapter(na);
+				Log.i("tag", "填充完毕");
+			} else {
+				Toast.makeText(DetailActivity.this, "Wops!貌似网络不给力",
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 
@@ -125,21 +134,60 @@ public class DetailActivity extends Activity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						df=new DownloadFile();
-						final Boolean res=df.downloadFile(download_url);                  //Download torrent in thread
+						df = new DownloadFile();
+						final Boolean res = df.downloadFile(download_url); // Download
+																			// torrent
+																			// in
+																			// thread
+
 						handler.post(new Runnable() {
 
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
 								if (res)
-									Toast.makeText(
-											DetailActivity.this,
-											"下载成功!默认路径为"
-													+ Environment
-															.getExternalStorageDirectory()
-													+ "/MyTorrent/",
-											Toast.LENGTH_LONG).show();
+									new AlertDialog.Builder(DetailActivity.this)
+											.setMessage(
+													"下载成功!默认路径为"
+															+ Environment
+																	.getExternalStorageDirectory()
+															+ "/MyTorrent/")
+											.setPositiveButton(
+													"打开",
+													new DialogInterface.OnClickListener() {
+
+														public void onClick(
+																DialogInterface dialog,
+																int which) {
+															// TODO
+															// Auto-generated
+															// method stub
+															Intent open = new Intent();
+															open.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+															open.setAction(Intent.ACTION_VIEW);
+
+															MimeTypeMap mtm = MimeTypeMap
+																	.getSingleton();
+															if (!mtm.hasExtension(MimeTypeMap
+																	.getFileExtensionFromUrl(download_url)))
+																Toast.makeText(
+																		DetailActivity.this,
+																		"不支持的文件格式",
+																		Toast.LENGTH_LONG)
+																		.show();
+															else
+																open.setDataAndType(
+																		Uri.fromFile(df
+																				.getFile()),
+																		mtm.getMimeTypeFromExtension(MimeTypeMap
+																				.getFileExtensionFromUrl(download_url)));
+
+															startActivity(open);
+														}
+													})
+											.setNegativeButton("返回", null)
+											.show();
+
 								else
 									Toast.makeText(DetailActivity.this,
 											"下载失败!", Toast.LENGTH_LONG).show();
@@ -151,12 +199,16 @@ public class DetailActivity extends Activity {
 			}
 		});
 	}
-	class NameAdapter extends BaseAdapter{
+
+	class NameAdapter extends BaseAdapter {
 		private LayoutInflater mInflater;
+		private TextView filetext;
+
 		public NameAdapter(Context ctx) {
 			super();
 			mInflater = LayoutInflater.from(ctx);
 		}
+
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
@@ -178,18 +230,14 @@ public class DetailActivity extends Activity {
 		@Override
 		public View getView(int pos, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			ViewHolder holder = new ViewHolder();
+			// ViewHolder holder = new ViewHolder();
 			convertView = mInflater.inflate(R.layout.filelist, null);
-			holder.filetext = (TextView) convertView
-					.findViewById(R.id.filelist);
+			filetext = (TextView) convertView.findViewById(R.id.filelist);
 			Element e = filename.get(pos);
-			holder.filetext.setText(e.text());
+			filetext.setText(e.text());
 			return convertView;
 		}
-		
+
 	}
-	public final class ViewHolder {
-		public TextView filetext;
-		
-	}
+
 }

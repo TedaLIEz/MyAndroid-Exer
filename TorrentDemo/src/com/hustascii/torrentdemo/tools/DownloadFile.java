@@ -14,6 +14,14 @@ import java.net.URL;
 import android.os.Environment;
 
 public class DownloadFile {
+	private File file;
+	private String newFilename;
+	public String getnewFilename(){
+		return newFilename;
+	}
+	public File getFile() {
+		return file;
+	}
 	public Boolean downloadFile(String urlPath) {
 		try {
 			URL url = new URL(urlPath);
@@ -26,11 +34,11 @@ public class DownloadFile {
 			if (!f.exists()) {
 				f.mkdir();
 			}
-			String newFilename = urlPath
+			newFilename = urlPath
 					.substring(urlPath.lastIndexOf('/') + 1);
 
 			newFilename = dirName + newFilename;
-			File file = new File(newFilename);
+			file = new File(newFilename);
 			if (file.exists()) {
 				file.delete();
 			}

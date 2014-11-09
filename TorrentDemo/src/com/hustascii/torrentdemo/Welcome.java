@@ -29,7 +29,8 @@ public class Welcome extends Activity {
 		new AnimationUtils();
 		Animation anim_str = AnimationUtils.loadAnimation(this,
 				R.anim.anim_set_str);
-		anim_str.setStartOffset(1000);
+		anim_pic.setInterpolator(this,android.R.anim.bounce_interpolator);
+		anim_str.setStartOffset(2000);
 		
 		// Set Animation
 		iv_icon.setAnimation(anim_pic);
@@ -45,6 +46,6 @@ public class Welcome extends Activity {
 				Welcome.this.finish();
 			}
 
-		}, 2700);
+		}, 4500);
 	}
 }

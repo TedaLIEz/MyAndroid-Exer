@@ -18,6 +18,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -174,4 +175,16 @@ public class ResultActivity extends Activity {
 		public TextView sizelist;
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+			Intent back = new Intent(ResultActivity.this,
+					com.hustascii.torrentdemo.MainActivity.class);
+			startActivity(back);
+			ResultActivity.this.finish();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

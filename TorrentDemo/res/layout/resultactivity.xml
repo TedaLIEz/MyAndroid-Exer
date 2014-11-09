@@ -8,12 +8,17 @@
 
     <ListView
         android:id="@+id/resultlist"
-        android:divider="#000000"
-        android:dividerHeight="3dp"
+       android:divider="#000000"
+       android:dividerHeight="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        
          >
     </ListView>
+    <ImageView
+    android:layout_width="fill_parent"
+    android:layout_height="3dp"
+    android:src="#000000" />
     
     
 </LinearLayout>

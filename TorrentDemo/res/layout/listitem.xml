@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal" >
 
     <ImageView
@@ -11,19 +11,21 @@
     
     <TextView
         android:id="@+id/namelist"
-        android:layout_width="156dp"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:text="name:"
-        android:textSize="15dp" />
+        android:layout_weight="0.43"
+        android:textSize="15dp"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/sizelist"
         android:layout_width="72dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:text="size:"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="0.57"
         android:textSize="15dp" />
-    
 
-</LinearLayout>
+	</LinearLayout>
+
+
+	 
