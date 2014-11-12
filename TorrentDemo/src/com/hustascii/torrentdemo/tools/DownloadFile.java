@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.os.Environment;
+import android.util.Log;
 
 public class DownloadFile {
 	private File file;
@@ -46,10 +47,11 @@ public class DownloadFile {
 				InputStream is = conn.getInputStream();
 				FileOutputStream fos = new FileOutputStream(newFilename);
 				byte[] bt = new byte[1024];
-
+				
 				int byteread = 0;
 				while ((byteread = is.read(bt)) != -1) {
-
+					int readsize=+byteread;
+					Log.i("tag", String.valueOf(readsize));
 					fos.write(bt, 0, byteread);
 				}
 				fos.flush();

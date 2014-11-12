@@ -52,6 +52,9 @@ public class DetailActivity extends Activity {
 	private static Handler handler = new Handler();
 	public DownloadFile df;
 
+	// private Button btnpath;
+	// private String initpath="/torrent/";
+
 	/*
 	 * DownLoad Torrent
 	 */
@@ -65,6 +68,7 @@ public class DetailActivity extends Activity {
 			super.onPreExecute();
 			pd = new ProgressDialog(DetailActivity.this);
 			pd.setMessage("听说用力摇手机可以提高加载速度哦~");
+			pd.setCanceledOnTouchOutside(false);
 			pd.show();
 		}
 
@@ -117,7 +121,7 @@ public class DetailActivity extends Activity {
 		setContentView(R.layout.detailactivity);
 		lv = (ListView) findViewById(R.id.detaillist);
 		download = (ImageButton) findViewById(R.id.download);
-
+		// btnpath = (Button)findViewById(R.id.btn1);
 		new TestAsyncTask().execute("");
 
 		download.setOnClickListener(new OnClickListener() {
@@ -137,7 +141,7 @@ public class DetailActivity extends Activity {
 																			// torrent
 																			// in
 																			// thread
-
+						
 						handler.post(new Runnable() {
 
 							@Override
@@ -149,7 +153,7 @@ public class DetailActivity extends Activity {
 													"下载成功!默认路径为"
 															+ Environment
 																	.getExternalStorageDirectory()
-															+ "/MyTorrent/")
+															+ "/torrent/")
 											.setPositiveButton(
 													"打开",
 													new DialogInterface.OnClickListener() {
@@ -166,21 +170,26 @@ public class DetailActivity extends Activity {
 
 															MimeTypeMap mtm = MimeTypeMap
 																	.getSingleton();
-															if (!mtm.hasExtension(MimeTypeMap
-																	.getFileExtensionFromUrl(download_url)))
-																Toast.makeText(
-																		DetailActivity.this,
-																		"不支持的文件格式",
-																		Toast.LENGTH_LONG)
-																		.show();
-															else
+															try {
+
 																open.setDataAndType(
 																		Uri.fromFile(df
 																				.getFile()),
 																		mtm.getMimeTypeFromExtension(MimeTypeMap
 																				.getFileExtensionFromUrl(download_url)));
+																startActivity(open);
+															} catch (Exception e) {
+																// TODO
+																// Auto-generated
+																// catch block
 
-															startActivity(open);
+																Toast.makeText(
+																		DetailActivity.this,
+																		"不支持的文件格式",
+																		Toast.LENGTH_LONG)
+																		.show();
+															}
+
 														}
 													})
 											.setNegativeButton("返回", null)
@@ -196,6 +205,15 @@ public class DetailActivity extends Activity {
 
 			}
 		});
+
+		/*
+		 * btnpath.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { // TODO Auto-generated method
+		 * stub Intent path=new
+		 * Intent(DetailActivity.this,FileExplorerActivity.class);
+		 * startActivity(path); } });
+		 */
 	}
 
 	class NameAdapter extends BaseAdapter {
@@ -238,4 +256,11 @@ public class DetailActivity extends Activity {
 
 	}
 
+	/*
+	 * @Override protected void onResume() { // TODO Auto-generated method stub
+	 * super.onResume(); Intent path=new Intent();
+	 * initpath=path.getStringExtra("path");
+	 * 
+	 * }
+	 */
 }

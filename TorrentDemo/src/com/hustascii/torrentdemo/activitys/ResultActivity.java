@@ -42,6 +42,7 @@ public class ResultActivity extends Activity {
 			super.onPreExecute();
 			pd = new ProgressDialog(ResultActivity.this);
 			pd.setMessage("听说用力摇手机可以提高加载速度哦~");
+			pd.setCanceledOnTouchOutside(false);
 			pd.show();
 		}
 

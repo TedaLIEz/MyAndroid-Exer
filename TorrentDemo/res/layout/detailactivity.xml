@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background" >
+    android:background="@drawable/detailbg" >
 
     <TextView
         android:id="@+id/title"
         android:layout_width="255dp"
         android:layout_height="60dp"
+        android:layout_toLeftOf="@+id/download"
+        android:gravity="center_vertical"
         android:text="@string/detail"
-        android:textStyle="bold"
-        android:textSize="32sp"
-        android:gravity="center_vertical" />
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
     <ImageView 
         android:id="@+id/blackline"
         android:layout_height="4dp"
@@ -30,10 +32,11 @@
 
     <ImageButton
         android:id="@+id/download"
-        android:layout_gravity="bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/title"
-        android:src="@drawable/for_bt_download"
-        android:background="#00000000"  />
+        android:layout_above="@+id/blackline"
+        android:layout_alignParentRight="true"
+        android:background="#00000000"
+        android:src="@drawable/for_bt_download" />
+
 </RelativeLayout>

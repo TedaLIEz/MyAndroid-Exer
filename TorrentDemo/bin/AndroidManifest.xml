@@ -43,6 +43,11 @@
             android:label="@string/app_name" >
             
         </activity>
+         <!-- <activity
+            android:name="com.hustascii.torrentdemo.activitys.FileExplorerActivity"
+            android:label="@string/app_name" >
+            
+        </activity> -->
        
     </application>
 
