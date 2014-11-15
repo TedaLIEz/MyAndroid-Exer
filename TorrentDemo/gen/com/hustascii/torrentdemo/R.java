@@ -1098,13 +1098,14 @@ containing a value of this type.
         public static final int for_bt_search=0x7f020067;
         public static final int ic_launcher=0x7f020068;
         public static final int icon_28665=0x7f020069;
-        public static final int lines=0x7f02006a;
-        public static final int miooooo=0x7f02006b;
-        public static final int mioseed=0x7f02006c;
-        public static final int resultbg=0x7f02006d;
-        public static final int searchtext=0x7f02006e;
-        public static final int start_64=0x7f02006f;
-        public static final int text=0x7f020070;
+        public static final int icon_download=0x7f02006a;
+        public static final int lines=0x7f02006b;
+        public static final int miooooo=0x7f02006c;
+        public static final int mioseed=0x7f02006d;
+        public static final int resultbg=0x7f02006e;
+        public static final int searchtext=0x7f02006f;
+        public static final int start_64=0x7f020070;
+        public static final int text=0x7f020071;
     }
     public static final class id {
         public static final int aboutLayout=0x7f05003d;

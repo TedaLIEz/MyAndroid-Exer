@@ -5,12 +5,10 @@ package com.hustascii.torrentdemo.activitys;
 
 import java.util.ArrayList;
 
-import com.hustascii.torrentdemo.R;
-import com.hustascii.torrentdemo.beans.Result;
-import com.hustascii.torrentdemo.tools.Spider;
-
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,16 +22,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.hustascii.torrentdemo.R;
+import com.hustascii.torrentdemo.beans.Result;
+import com.hustascii.torrentdemo.tools.Spider;
 
 public class ResultActivity extends Activity {
 	private ListView resultlv;
 	private ArrayList<Result> resultal;
 
 	private ProgressDialog pd;
+
 	Spider sd = new Spider();
 
 	private class TestAsyncTask extends AsyncTask<String, Void, Boolean> {
@@ -44,6 +47,7 @@ public class ResultActivity extends Activity {
 			pd.setMessage("听说用力摇手机可以提高加载速度哦~");
 			pd.setCanceledOnTouchOutside(false);
 			pd.show();
+
 		}
 
 		@Override

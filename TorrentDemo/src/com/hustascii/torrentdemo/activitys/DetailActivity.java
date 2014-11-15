@@ -14,6 +14,9 @@ import org.jsoup.nodes.Element;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.Notification.Builder;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -51,6 +54,9 @@ public class DetailActivity extends Activity {
 	private NameAdapter na;
 	private static Handler handler = new Handler();
 	public DownloadFile df;
+	NotificationManager manager;
+
+	private final int notification_ID = 0;
 
 	// private Button btnpath;
 	// private String initpath="/torrent/";
@@ -121,32 +127,35 @@ public class DetailActivity extends Activity {
 		setContentView(R.layout.detailactivity);
 		lv = (ListView) findViewById(R.id.detaillist);
 		download = (ImageButton) findViewById(R.id.download);
+		manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		// btnpath = (Button)findViewById(R.id.btn1);
 		new TestAsyncTask().execute("");
-
+		// sendNotification();
 		download.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(DetailActivity.this, "开始下载", Toast.LENGTH_SHORT)
-						.show();
+
 				new Thread(new Runnable() {
 
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
+						sendNotification();
 						df = new DownloadFile();
 						final Boolean res = df.downloadFile(download_url); // Download
 																			// torrent
 																			// in
 																			// thread
-						
+
 						handler.post(new Runnable() {
 
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
+								// notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+								manager.cancel(notification_ID);
 								if (res)
 									new AlertDialog.Builder(DetailActivity.this)
 											.setMessage(
@@ -200,6 +209,7 @@ public class DetailActivity extends Activity {
 											"下载失败!", Toast.LENGTH_LONG).show();
 							}
 						});
+
 					}
 				}).start();
 
@@ -214,6 +224,18 @@ public class DetailActivity extends Activity {
 		 * Intent(DetailActivity.this,FileExplorerActivity.class);
 		 * startActivity(path); } });
 		 */
+	}
+
+	private void sendNotification() {
+		Builder builder = new Notification.Builder(DetailActivity.this);
+		builder.setSmallIcon(R.drawable.icon_download);
+		builder.setContentText("下载中...");
+		builder.setTicker("开始下载");
+		builder.setWhen(System.currentTimeMillis());
+		builder.setContentTitle("通知栏");
+		builder.setDefaults(Notification.DEFAULT_VIBRATE);
+		Notification notification = builder.build();
+		manager.notify(notification_ID, notification);
 	}
 
 	class NameAdapter extends BaseAdapter {

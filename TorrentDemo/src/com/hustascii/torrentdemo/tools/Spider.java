@@ -54,7 +54,7 @@ public class Spider {
 			Result rs = new Result();
 			rs.setUrl(urls.get(i).attr("abs:href"));
 			rs.setName(names.get(i).select("a[target]").text());
-			rs.setSize(sizes.get(i).text().replaceAll("Size", "大小"));
+			rs.setSize(sizes.get(i).text().replaceAll("Size", "内部文件大小"));
 			list.add(rs);
 
 		}
